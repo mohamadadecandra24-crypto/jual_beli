@@ -19,6 +19,11 @@ Route::resource('expenses', ExpenseController::class);
 
 Route::get('/reports/profit-loss', [ReportController::class, 'profitLoss'])->name('reports.profit_loss');
 
+Route::get('/migrate', function() {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return "Migrasi Berhasil!";
+});
+
 // Fallback route: jika user mengetik URL yang salah (atau via localhost/folder/public), arahkan ke halaman utama
 Route::fallback(function () {
     return redirect()->route('transactions.create');
