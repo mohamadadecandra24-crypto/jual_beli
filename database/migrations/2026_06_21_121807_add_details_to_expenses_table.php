@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('expenses', function (Blueprint $table) {
             $table->integer('qty')->nullable()->after('description');
+        });
+        Schema::table('expenses', function (Blueprint $table) {
             $table->decimal('unit_price', 15, 2)->nullable()->after('qty');
         });
     }
