@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 $app = require __DIR__ . '/../bootstrap/app.php';
 $app->useStoragePath($_ENV['APP_STORAGE'] ?? '/tmp');
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
