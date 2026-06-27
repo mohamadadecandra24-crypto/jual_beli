@@ -10,24 +10,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background-color: #f8f9fa; }
-        .sidebar { min-height: 100vh; background-color: #343a40; }
+        .sidebar { min-height: 100vh; }
         .sidebar a { color: #fff; text-decoration: none; display: block; padding: 10px 15px; }
-        .sidebar a:hover { background-color: #495057; }
+        .sidebar a:hover { background-color: rgba(255,255,255,0.1); }
         .content { padding: 20px; }
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar p-3" style="width: 250px;">
-            <h4 class="text-white text-center mb-4"><i class="fas fa-store"></i> JualBeli App</h4>
+    <div class="d-flex flex-column flex-md-row min-vh-100">
+        <!-- Mobile Navbar -->
+        <nav class="navbar navbar-dark bg-primary d-md-none px-3 sticky-top shadow-sm">
+            <a class="navbar-brand" href="#"><i class="fas fa-store"></i> JualBeli App</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+
+        <!-- Sidebar / Offcanvas -->
+        <div class="offcanvas-md offcanvas-start bg-primary sidebar p-3" tabindex="-1" id="sidebarOffcanvas" style="width: 250px;">
+            <div class="d-flex justify-content-between align-items-center mb-4 d-md-none">
+                <h5 class="text-white m-0"><i class="fas fa-store"></i> Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarOffcanvas"></button>
+            </div>
+            <h4 class="text-white text-center mb-4 d-none d-md-block"><i class="fas fa-store"></i> JualBeli App</h4>
+            
             <a href="{{ route('transactions.create') }}"><i class="fas fa-cash-register me-2"></i> Admin Kasir</a>
             <a href="{{ route('transactions.index') }}"><i class="fas fa-receipt me-2"></i> Riwayat Transaksi</a>
-            <hr class="text-white">
+            <hr class="text-white opacity-50">
             <a href="{{ route('products.index') }}"><i class="fas fa-box me-2"></i> Produk</a>
             <a href="{{ route('categories.index') }}"><i class="fas fa-tags me-2"></i> Kategori</a>
             <a href="{{ route('expenses.index') }}"><i class="fas fa-wallet me-2"></i> Pengeluaran</a>
-            <hr class="text-white">
+            <hr class="text-white opacity-50">
             <a href="{{ route('reports.profit_loss') }}"><i class="fas fa-chart-line me-2"></i> Laporan Laba Rugi</a>
         </div>
 

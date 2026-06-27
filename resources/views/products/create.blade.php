@@ -17,7 +17,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('products.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label>Kategori</label>
@@ -33,8 +33,9 @@
                 <input type="text" name="name" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label>Gambar Produk</label>
-                <input type="file" name="image" class="form-control" accept="image/*">
+                <label>Link Gambar Produk (URL)</label>
+                <input type="url" name="image" class="form-control" placeholder="https://contoh.com/gambar.jpg">
+                <small class="text-muted">Masukkan link URL gambar dari internet. Kosongkan jika tidak ada.</small>
             </div>
             <div class="mb-3">
                 <label>Stok Awal</label>

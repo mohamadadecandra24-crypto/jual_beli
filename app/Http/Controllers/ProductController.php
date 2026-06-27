@@ -30,25 +30,10 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'buy_price' => 'required|numeric|min:0',
             'sell_price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'nullable|string|url|max:2048',
         ]);
         
         $data = $request->all();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            if ($file->isValid() && file_exists($file->getPathname())) {
-                $path = 'products/' . $file->hashName();
-                $content = @file_get_contents($file->getPathname());
-                if ($content !== false) {
-                    Storage::disk('public')->put($path, $content);
-                    $data['image'] = $path;
-                } else {
-                    return back()->withErrors(['image' => 'File gambar tidak dapat dibaca oleh server.'])->withInput();
-                }
-            } else {
-                return back()->withErrors(['image' => 'File gambar tidak valid atau terhapus oleh sistem.'])->withInput();
-            }
-        }
 
         $product = Product::create($data);
 
@@ -79,29 +64,10 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'buy_price' => 'required|numeric|min:0',
             'sell_price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'nullable|string|url|max:2048',
         ]);
         
         $data = $request->all();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            if ($file->isValid() && file_exists($file->getPathname())) {
-                $path = 'products/' . $file->hashName();
-                $content = @file_get_contents($file->getPathname());
-                if ($content !== false) {
-                    Storage::disk('public')->put($path, $content);
-                    $data['image'] = $path;
-                    
-                    if ($product->image && Storage::disk('public')->exists($product->image)) {
-                        Storage::disk('public')->delete($product->image);
-                    }
-                } else {
-                    return back()->withErrors(['image' => 'File gambar tidak dapat dibaca oleh server.'])->withInput();
-                }
-            } else {
-                return back()->withErrors(['image' => 'File gambar tidak valid atau terhapus oleh sistem.'])->withInput();
-            }
-        }
 
         $product->update($data);
         return redirect()->route('products.index')->with('success', 'Produk berhasil diubah');

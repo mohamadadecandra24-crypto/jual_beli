@@ -25,7 +25,7 @@
                                     data-price="{{ $product->sell_price }}" 
                                     data-name="{{ $product->name }}" 
                                     data-stock="{{ $product->stock }}" 
-                                    data-image="{{ $product->image ? Storage::url($product->image) : '' }}">
+                                    data-image="{{ $product->image ? (filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image)) : '' }}">
                                     {{ $product->name }} &mdash; Rp {{ number_format($product->sell_price, 0, ',', '.') }} (Stok: {{ $product->stock }})
                                 </option>
                                 @endforeach

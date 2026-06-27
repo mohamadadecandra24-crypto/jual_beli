@@ -26,7 +26,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if($product->image)
-                            <img src="{{ Storage::url($product->image) }}" alt="Gambar" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                            <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                         @else
                             <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; border-radius: 4px; font-size: 10px;">No Img</div>
                         @endif

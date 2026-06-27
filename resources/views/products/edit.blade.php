@@ -17,7 +17,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('products.update', $product) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -33,14 +33,14 @@
                 <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
             </div>
             <div class="mb-3">
-                <label>Gambar Produk</label>
+                <label>Link Gambar Produk (URL)</label>
                 @if($product->image)
                     <div class="mb-2">
-                        <img src="{{ Storage::url($product->image) }}" alt="Gambar Produk" style="max-height: 100px; border-radius: 5px;">
+                        <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar Produk" style="max-height: 100px; border-radius: 5px;">
                     </div>
                 @endif
-                <input type="file" name="image" class="form-control" accept="image/*">
-                <small class="text-muted">Biarkan kosong jika tidak ingin mengubah gambar.</small>
+                <input type="url" name="image" class="form-control" value="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : '' }}" placeholder="https://contoh.com/gambar.jpg">
+                <small class="text-muted">Masukkan link URL gambar baru jika ingin mengubahnya.</small>
             </div>
             <div class="mb-3">
                 <label>Stok</label>
