@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             $table->string('cashier_name')->nullable()->after('user_id');
+        });
+        Schema::table('transactions', function (Blueprint $table) {
             $table->string('cashier_nip')->nullable()->after('cashier_name');
+        });
+        Schema::table('transactions', function (Blueprint $table) {
             $table->string('supervisor_name')->nullable()->after('cashier_nip');
         });
     }
