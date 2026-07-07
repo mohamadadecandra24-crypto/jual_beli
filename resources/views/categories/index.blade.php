@@ -8,7 +8,8 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -37,6 +38,7 @@
                 @endforelse
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 @endsection
