@@ -44,16 +44,16 @@ Route::get('/seed-sembako', function() {
     $catBumbu = \App\Models\Category::firstOrCreate(['name' => 'Bumbu & Saus']);
     
     $products = [
-        ['cat' => $catBahanPokok->id, 'name' => 'Beras Pandan Wangi 5kg', 'stock' => 20, 'buy_price' => 70000, 'sell_price' => 75000, 'img' => 'https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=400&q=80'],
-        ['cat' => $catBahanPokok->id, 'name' => 'Beras Rojolele 10kg', 'stock' => 15, 'buy_price' => 130000, 'sell_price' => 140000, 'img' => 'https://images.unsplash.com/photo-1593922570081-37eb8da5cfa1?w=400&q=80'],
-        ['cat' => $catBahanPokok->id, 'name' => 'Minyak Goreng Bimoli 2L', 'stock' => 50, 'buy_price' => 33000, 'sell_price' => 36000, 'img' => 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80'],
-        ['cat' => $catBahanPokok->id, 'name' => 'Minyak Goreng Filma 1L', 'stock' => 40, 'buy_price' => 16500, 'sell_price' => 18000, 'img' => 'https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=400&q=80'],
-        ['cat' => $catBumbu->id, 'name' => 'Gula Pasir Gulaku 1kg', 'stock' => 60, 'buy_price' => 15000, 'sell_price' => 16500, 'img' => 'https://images.unsplash.com/photo-1581428982868-e410dd1fc0aa?w=400&q=80'],
-        ['cat' => $catBahanPokok->id, 'name' => 'Telur Ayam Negeri 1kg', 'stock' => 30, 'buy_price' => 25000, 'sell_price' => 28000, 'img' => 'https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=400&q=80'],
-        ['cat' => $catBahanPokok->id, 'name' => 'Tepung Terigu Segitiga Biru 1kg', 'stock' => 25, 'buy_price' => 10500, 'sell_price' => 12000, 'img' => 'https://images.unsplash.com/photo-1627485937980-221c88ac04f9?w=400&q=80'],
-        ['cat' => $catBumbu->id, 'name' => 'Garam Dapur Halus 500g', 'stock' => 100, 'buy_price' => 2000, 'sell_price' => 3000, 'img' => 'https://images.unsplash.com/photo-1621235129633-855e4cb185b3?w=400&q=80'],
-        ['cat' => $catBumbu->id, 'name' => 'Kecap Manis Bango 520ml', 'stock' => 35, 'buy_price' => 20000, 'sell_price' => 22000, 'img' => 'https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=400&q=80'],
-        ['cat' => $catBumbu->id, 'name' => 'Saus Sambal Indofood 340ml', 'stock' => 45, 'buy_price' => 13500, 'sell_price' => 15000, 'img' => 'https://images.unsplash.com/photo-1585122501062-84196b010be5?w=400&q=80'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Beras Pandan Wangi 5kg', 'stock' => 20, 'buy_price' => 70000, 'sell_price' => 75000, 'img' => 'https://cdn-icons-png.flaticon.com/512/6889/6889988.png'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Beras Rojolele 10kg', 'stock' => 15, 'buy_price' => 130000, 'sell_price' => 140000, 'img' => 'https://cdn-icons-png.flaticon.com/512/3014/3014522.png'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Minyak Goreng Bimoli 2L', 'stock' => 50, 'buy_price' => 33000, 'sell_price' => 36000, 'img' => 'https://cdn-icons-png.flaticon.com/512/1000/1000085.png'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Minyak Goreng Filma 1L', 'stock' => 40, 'buy_price' => 16500, 'sell_price' => 18000, 'img' => 'https://cdn-icons-png.flaticon.com/512/5753/5753965.png'],
+        ['cat' => $catBumbu->id, 'name' => 'Gula Pasir Gulaku 1kg', 'stock' => 60, 'buy_price' => 15000, 'sell_price' => 16500, 'img' => 'https://cdn-icons-png.flaticon.com/512/3081/3081977.png'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Telur Ayam Negeri 1kg', 'stock' => 30, 'buy_price' => 25000, 'sell_price' => 28000, 'img' => 'https://cdn-icons-png.flaticon.com/512/837/837560.png'],
+        ['cat' => $catBahanPokok->id, 'name' => 'Tepung Terigu Segitiga Biru 1kg', 'stock' => 25, 'buy_price' => 10500, 'sell_price' => 12000, 'img' => 'https://cdn-icons-png.flaticon.com/512/2927/2927341.png'],
+        ['cat' => $catBumbu->id, 'name' => 'Garam Dapur Halus 500g', 'stock' => 100, 'buy_price' => 2000, 'sell_price' => 3000, 'img' => 'https://cdn-icons-png.flaticon.com/512/3944/3944111.png'],
+        ['cat' => $catBumbu->id, 'name' => 'Kecap Manis Bango 520ml', 'stock' => 35, 'buy_price' => 20000, 'sell_price' => 22000, 'img' => 'https://cdn-icons-png.flaticon.com/512/3014/3014498.png'],
+        ['cat' => $catBumbu->id, 'name' => 'Saus Sambal Indofood 340ml', 'stock' => 45, 'buy_price' => 13500, 'sell_price' => 15000, 'img' => 'https://cdn-icons-png.flaticon.com/512/8173/8173752.png'],
     ];
 
     foreach ($products as $p) {
