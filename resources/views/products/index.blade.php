@@ -4,8 +4,6 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Daftar Produk</h2>
     <div>
-        <a href="{{ url('/seed-sembako') }}" class="btn btn-success me-2 d-none d-md-inline-block"><i class="fas fa-magic"></i> +10 Sembako</a>
-        <a href="{{ url('/seed-sembako') }}" class="btn btn-success me-2 d-md-none btn-sm" title="Tambah 10 Sembako"><i class="fas fa-magic"></i></a>
         <a href="{{ route('products.create') }}" class="btn btn-primary d-none d-md-inline-block"><i class="fas fa-plus"></i> Tambah Produk</a>
         <a href="{{ route('products.create') }}" class="btn btn-primary d-md-none btn-sm" title="Tambah Produk"><i class="fas fa-plus"></i></a>
     </div>
