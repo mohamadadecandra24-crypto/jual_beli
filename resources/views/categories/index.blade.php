@@ -8,7 +8,8 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="table-responsive">
+        <!-- Desktop Table View -->
+        <div class="table-responsive d-none d-md-block">
             <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -38,6 +39,30 @@
                 @endforelse
             </tbody>
         </table>
+        </div>
+
+        <!-- Mobile Card View -->
+        <div class="d-block d-md-none">
+            @forelse($categories as $category)
+            <div class="card mb-2 shadow-sm border-0 bg-light">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-0 fw-bold">{{ $category->name }}</h6>
+                        <small class="text-muted">ID: {{ $category->id }}</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline form-delete">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="text-center text-muted py-3">Belum ada kategori.</div>
+            @endforelse
         </div>
     </div>
 </div>
