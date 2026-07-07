@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\ReportController;
-
 Route::get('/', function () {
     return redirect()->route('transactions.create');
 });
@@ -18,6 +15,9 @@ Route::resource('transactions', TransactionController::class)->only(['index', 'c
 Route::resource('expenses', ExpenseController::class);
 
 Route::get('/reports/profit-loss', [ReportController::class, 'profitLoss'])->name('reports.profit_loss');
+Route::post('/reports/login', [ReportController::class, 'login'])->name('reports.login');
+Route::post('/reports/logout', [ReportController::class, 'logout'])->name('reports.logout');
+
 
 Route::get('/migrate', function() {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
