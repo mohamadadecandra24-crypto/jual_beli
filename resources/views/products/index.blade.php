@@ -31,7 +31,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if($product->image)
-                            <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                            <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset($product->image) }}" alt="Gambar" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                         @else
                             <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; border-radius: 4px; font-size: 10px;">No Img</div>
                         @endif
@@ -79,7 +79,7 @@
                         <button class="accordion-button collapsed rounded bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct{{ $product->id }}" aria-expanded="false" aria-controls="collapseProduct{{ $product->id }}">
                             <div class="d-flex align-items-center w-100 me-2">
                                 @if($product->image)
-                                    <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" class="me-3">
+                                    <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset($product->image) }}" alt="Gambar" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" class="me-3">
                                 @else
                                     <div class="bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; border-radius: 4px; font-size: 10px;">No Img</div>
                                 @endif
