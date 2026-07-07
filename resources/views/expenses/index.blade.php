@@ -69,7 +69,7 @@
                         <div class="accordion-body bg-white border-top">
                             <div class="d-flex justify-content-between mb-2">
                                 <span><small class="text-muted">Qty:</small> {{ $expense->qty ? $expense->qty : '-' }}</span>
-                                <span><small class="text-muted">@:</small> {{ $expense->unit_price ? 'Rp ' . number_format($expense->unit_price, 0, ',', '.') : '-' }}</span>
+                                <span><small class="text-muted">Harga Satuan:</small> {{ $expense->unit_price ? 'Rp ' . number_format($expense->unit_price, 0, ',', '.') : '-' }}</span>
                             </div>
                             <div class="d-flex justify-content-end gap-2 mt-2 pt-2 border-top">
                                 <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
