@@ -49,39 +49,43 @@
         </table>
         </div>
 
-        <!-- Mobile Card View -->
+        <!-- Mobile Accordion View -->
         <div class="d-block d-md-none">
-            @forelse($expenses as $expense)
-            <div class="card mb-3 shadow-sm border-0 bg-light">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <small class="text-primary fw-bold">{{ \Carbon\Carbon::parse($expense->expense_date)->format('d M Y') }}</small>
-                        <small class="text-muted">ID: {{ $loop->iteration }}</small>
-                    </div>
-                    
-                    <h6 class="mb-2 fw-bold">{{ $expense->description }}</h6>
-                    
-                    <div class="d-flex justify-content-between mb-2">
-                        <span><small class="text-muted">Qty:</small> {{ $expense->qty ? $expense->qty : '-' }}</span>
-                        <span><small class="text-muted">@:</small> {{ $expense->unit_price ? 'Rp ' . number_format($expense->unit_price, 0, ',', '.') : '-' }}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
-                        <strong class="text-danger">Rp {{ number_format($expense->amount, 0, ',', '.') }}</strong>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="d-inline form-delete">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                            </form>
+            <div class="accordion" id="accordionExpenses">
+                @forelse($expenses as $expense)
+                <div class="accordion-item mb-2 border-0 shadow-sm rounded">
+                    <h2 class="accordion-header" id="headingExp{{ $loop->iteration }}">
+                        <button class="accordion-button collapsed rounded bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExp{{ $loop->iteration }}" aria-expanded="false" aria-controls="collapseExp{{ $loop->iteration }}">
+                            <div class="d-flex flex-column w-100 me-2">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small class="text-primary fw-bold">{{ \Carbon\Carbon::parse($expense->expense_date)->format('d M Y') }}</small>
+                                    <strong class="text-danger">Rp {{ number_format($expense->amount, 0, ',', '.') }}</strong>
+                                </div>
+                                <h6 class="mb-0 fw-bold text-truncate">{{ $expense->description }}</h6>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseExp{{ $loop->iteration }}" class="accordion-collapse collapse" aria-labelledby="headingExp{{ $loop->iteration }}" data-bs-parent="#accordionExpenses">
+                        <div class="accordion-body bg-white border-top">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span><small class="text-muted">Qty:</small> {{ $expense->qty ? $expense->qty : '-' }}</span>
+                                <span><small class="text-muted">@:</small> {{ $expense->unit_price ? 'Rp ' . number_format($expense->unit_price, 0, ',', '.') : '-' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-end gap-2 mt-2 pt-2 border-top">
+                                <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="d-inline form-delete">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="text-center text-muted py-3">Belum ada catatan pengeluaran.</div>
+                @endforelse
             </div>
-            @empty
-            <div class="text-center text-muted py-3">Belum ada catatan pengeluaran.</div>
-            @endforelse
         </div>
     </div>
 </div>

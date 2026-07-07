@@ -67,50 +67,55 @@
         </table>
         </div>
 
-        <!-- Mobile Card View -->
+        <!-- Mobile Accordion View -->
         <div class="d-block d-md-none">
-            @forelse($products as $product)
-            <div class="card mb-3 shadow-sm border-0 bg-light">
-                <div class="card-body d-flex flex-column">
-                    <div class="d-flex align-items-center mb-2">
-                        @if($product->image)
-                            <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;" class="me-3">
-                        @else
-                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px; border-radius: 6px; font-size: 12px;">No Img</div>
-                        @endif
-                        <div>
-                            <h5 class="mb-0 fw-bold">{{ $product->name }}</h5>
-                            <small class="text-muted">{{ $product->category->name ?? '-' }}</small>
+            <div class="accordion" id="accordionProducts">
+                @forelse($products as $product)
+                <div class="accordion-item mb-2 border-0 shadow-sm rounded">
+                    <h2 class="accordion-header" id="headingProduct{{ $product->id }}">
+                        <button class="accordion-button collapsed rounded bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct{{ $product->id }}" aria-expanded="false" aria-controls="collapseProduct{{ $product->id }}">
+                            <div class="d-flex align-items-center w-100 me-2">
+                                @if($product->image)
+                                    <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" alt="Gambar" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" class="me-3">
+                                @else
+                                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; border-radius: 4px; font-size: 10px;">No Img</div>
+                                @endif
+                                <div class="flex-grow-1 text-truncate">
+                                    <h6 class="mb-0 fw-bold text-truncate">{{ $product->name }}</h6>
+                                    <small class="text-muted">Rp {{ number_format($product->sell_price, 0, ',', '.') }}</small>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseProduct{{ $product->id }}" class="accordion-collapse collapse" aria-labelledby="headingProduct{{ $product->id }}" data-bs-parent="#accordionProducts">
+                        <div class="accordion-body bg-white border-top">
+                            <p class="mb-1"><strong>Kategori:</strong> {{ $product->category->name ?? '-' }}</p>
+                            <p class="mb-2"><strong>Stok:</strong> 
+                                @if($product->stock > 5)
+                                    <span class="badge bg-secondary">{{ $product->stock }}</span>
+                                @else
+                                    <span class="badge bg-danger">{{ $product->stock }}</span>
+                                @endif
+                            </p>
+                            
+                            <div class="d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
+                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#restockModal{{ $product->id }}">
+                                    <i class="fas fa-plus-circle"></i> Stok
+                                </button>
+                                <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                <form action="{{ route('products.destroy', $product) }}" method="POST" class="d-inline form-delete">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Stok: 
-                            @if($product->stock > 5)
-                                <span class="badge bg-secondary">{{ $product->stock }}</span>
-                            @else
-                                <span class="badge bg-danger">{{ $product->stock }}</span>
-                            @endif
-                        </span>
-                        <strong class="text-primary">Rp {{ number_format($product->sell_price, 0, ',', '.') }}</strong>
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-2 mt-2">
-                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#restockModal{{ $product->id }}">
-                            <i class="fas fa-plus-circle"></i> Stok
-                        </button>
-                        <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('products.destroy', $product) }}" method="POST" class="d-inline form-delete">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                        </form>
-                    </div>
                 </div>
+                @empty
+                <div class="text-center text-muted py-3">Belum ada produk.</div>
+                @endforelse
             </div>
-            @empty
-            <div class="text-center text-muted py-3">Belum ada produk.</div>
-            @endforelse
         </div>
     </div>
 </div>
@@ -157,12 +162,7 @@
     }
 </script>
 @endforeach
-                <tr>
-                    <td colspan="7" class="text-center">Belum ada produk.</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+
     </div>
 </div>
 @endsection
